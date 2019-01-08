@@ -41,7 +41,7 @@ class HipHop():
                        metric_dimension = 2,
                        fixedImgExtension = '.tif'):
 
-        print('-----------------------', '\n Hallo HipHop! \n-----------------------')
+        print('-----------------------', '\n\n Hallo HipHop! \n This is a software for 2D/3D registration between CT/MRI and X-ray images \n\n----------------------- \n')
 
         # Get parameters from input arguments
         self.ProjectDir = ProjectDir  
@@ -80,12 +80,15 @@ class HipHop():
 
         # Initialize projector
         self._initialize_projector(Projector_info)
+        print(' Projector initialized \n')
 
         # Initialize metric
         self._initialize_metrics(Metrics_info)
+        print(' Metrics initialized \n')
 
         # Initialize optimizer
         self._initialize_optimizer(Optimizer_info)
+        print(' Optimizer initialized \n\n-----------------------\n')
 
         # Initialize images to be registered
         self._initialize_images()   
@@ -109,8 +112,6 @@ class HipHop():
 
         # Check that list_of_metric_objects is not empty   
         assert(self.Metrics), sys.exit('No metric has been initialized') 
-
-        print(' Metrics initialized')
 
 
 
@@ -137,9 +138,7 @@ class HipHop():
         self.RescaleFilterType = itk.RescaleIntensityImageFilter[self.FixedImageType, self.OutputPngImageType]
 
         # Initialize DRR counter
-        self.DRR_counter = 1
-
-        print(' Projector initialized')
+        self.DRR_counter = 1        
 
 
 
@@ -150,8 +149,6 @@ class HipHop():
         else:
             self.Optimizer = om.optimizer_factory(Optimizer_info, self._cost_function)
         self.OptHistory = {'Img#': [], 'To_register': [], 'Registered': [], 'To_correct': []}
-
-        print('\n Optimizer initialized')
 
 
 
@@ -1414,7 +1411,7 @@ class HipHop():
         for fixed_img_filepath in self.fixed_images:
 
             fixed_img_filename = fixed_img_filepath.split('\\')[-1].split('.')[0]
-            print('\n ', fixed_img_filename,  '\n')
+            print(' Registration for image: ', fixed_img_filename,  '\n')
 
             # Update metrics with current fixed image and mask image
             self._update_metric(fixed_img_filename)  
@@ -1435,7 +1432,7 @@ class HipHop():
                 PoseInitFile = self.InitPosesDir + 'init_' + self.PatientID + '_' + fixed_img_filename + '_' + self.Model3D + '.csv'
                 init = self._initialize_Pose(PoseInitFile, fixed_img_filename)
 
-                print(' Initialized pose: ', init)
+                print(' Initialized pose [rotX,rotY,rotZ,translX,translY,translZ]:\n', init)
 
                 # Update initial guess for optimization parameters as offset from initialized position
                 self._opt_parameters = np.add(parameters_offset, init)
@@ -1449,7 +1446,7 @@ class HipHop():
             # Save DRR with initial guess
             self._generateDRR(self._opt_parameters, save_DRR = True, save_id = fixed_img_filename + '_InitialGuess_' + self.Model3D)                
 
-            print('\n Running Optimization for ', fixed_img_filename)
+            print('\n Running Optimization with ', self.Optimizer.Name, ' method ...')
 
             start_time = time.time()
 
@@ -1482,7 +1479,10 @@ class HipHop():
         # Delete HipHop object at the end of the task
         self._delete_me()
                          
-        print('-----------------------', '\n Optimization ', self.Optimizer.Name)
+        print('\n Results: \n')
+        print(' Found optimal pose: '+ str(optimal_parameters) + '\n')
+        print(' Found minimum: ' + str(minimum_cost_function) + '\n')
+
 
 
     def run(self, taskType,

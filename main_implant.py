@@ -58,4 +58,4 @@ t1 = time.time()
 NewRegistration.register(InitialGuess = 'fromUser', parameters_offset = np.array([np.deg2rad(0.0), np.deg2rad(0.0), np.deg2rad(0.0), 0.0, 0.0, 0.0]))
 t2 = time.time()
 
-print('Registration time:', t2 -t1)
+print('Registration time:', t2 -t1, '\n')

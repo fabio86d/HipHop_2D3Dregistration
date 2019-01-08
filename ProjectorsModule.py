@@ -121,6 +121,7 @@ class Mahfouz():
         self.ImageType2D = itk.Image[PixelType, 2]
         self.RegionType = itk.ImageRegion[self.Dimension]
         movImageInfo = {'Volume_center': (0.0, 0.0)}
+        self.correction_matrix = correction_matrix
 
         # ITK: Set DRR image at initial position (at +focal length along the z direction)
         DRR = self.ImageType2D.New()
@@ -156,7 +157,8 @@ class Mahfouz():
         self.StlMesh = rw.StlReader(StlModelFileName)
 
         ## the correction matrix allows to make the local CS of the object coincide with the standard camera CS
-        #self.StlPoints = np.dot(correction_matrix, rm.augment_matrix_coord(StlPoints))[0:3].T
+        if self.correction_matrix:
+            self.StlPoints = np.dot(correction_matrix, rm.augment_matrix_coord(StlPoints))[0:3].T
 
         # Set Camera parameters (convert from mm to pixel units)    
         self.ppx_pixels = projector_info['DRR_ppx']/self.DRRspacing[0]

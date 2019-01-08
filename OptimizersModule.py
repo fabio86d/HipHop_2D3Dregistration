@@ -25,12 +25,8 @@ import numpy as np
 
 
 ####  OPTIMIZATION LIBRARY
-import nlopt
-
-
-
-#### MY MODULES
 sys.path.append('C:\\NLopt\\nlopt-2.4.2-dll64_2nd')
+import nlopt
 
 
 
@@ -159,7 +155,7 @@ class NL_opt_GH_ESCH():
         # Pick initial (real) parameters to optimize only
         parameters_to_optimize = parameters[self.to_optimize]
 
-        print('\n Initial Guess is: ', parameters_to_optimize)
+        #print('\n Initial Guess is: ', parameters_to_optimize)
 
         # Normalize initial parameters (if needed)
         if self.Norm:
