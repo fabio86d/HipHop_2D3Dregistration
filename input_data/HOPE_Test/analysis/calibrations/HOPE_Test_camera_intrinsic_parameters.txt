@@ -1,0 +1,7 @@
+focal_length, 987.0358
+spacing_x, 0.2756
+spacing_y, 0.2756
+principal_point_x, 3.6180
+principal_point_y, 7.9646
+size_x, 1000
+size_y, 1000

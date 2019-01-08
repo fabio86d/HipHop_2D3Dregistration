@@ -1,0 +1,1 @@
+{'minImgContrast': 0, 'maxImgContrast': 65536, 'CannyThresh1': 0, 'CannyThresh2': 0, 'Aperture': 1}
