@@ -1,7 +1,19 @@
 # GPU accelerated 2D/3D registration
-# Brief Desription
-The repository contains a framework for 2D/3D image registration between CT or MRI scan to and 2D X-ray images.
+# Brief Description
+The repository contains a framework for 2D/3D image registration between 2D X-ray images and either a CT/MRI scan or an STL (CAD) model.
 
+Generation of Digitally Reconstructed Radiographs (DRR) for registration of a CT/MRI scan is GPU accelerated.
+
+The framework uses several python libraries (ITK, VTK, Opencv, NLopt) and it includes different main python modules:
+- HipHop: the implemented class HipHop puts together the different registration components.
+- ProjectorsModule: for generation of Digitally Reconstructed Radiographs (DRR) from either a volumetric image (CT,MRI) or an STL model.
+- MetricsModule: includes several different similarity metrics for 2D/2D image registration.
+- OptimizersModule: includes different optimization techniques for image registration.
+The modules for the projector, the metrics and the optimizer are implemented in a way that a new method can be plugged-in by means of an object factory mechanism.
+
+The CUDA accelerated library for DRR generation from CT/MRI scan is provided already wrapped in Python as "SiddonGpuPy.pyd" file. The original C/C++ codes
+and the method for wrapping the library in Python using Cython are available in another repository. 
+ 
 # Installation
 Use the code is with an Anaconda environment equipped with python-3.X, Python itk, Python vtk, Python openCV and Cython.
 
@@ -32,4 +44,4 @@ Procedure:
 # Test the package
 
 In order to run 2D/3D registration between STL model and an X-ray image:
-run python main_implant.py
+run "python main_implant.py"
