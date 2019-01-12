@@ -25,7 +25,8 @@ import numpy as np
 
 
 ####  OPTIMIZATION LIBRARY
-sys.path.append('C:\\NLopt\\nlopt-2.4.2-dll64_2nd')
+#sys.path.append('..\\NLopt\\nlopt-2.4.2-dll64_2nd')
+sys.path.append('..\\wrapped_modules\\nlopt-2.4.2-dll64_2nd')
 import nlopt
 
 

@@ -17,13 +17,12 @@ as long as they are defined as classes with the following methods:
 """
 
 ####  PYTHON MODULES
-import itk
 import numpy as np
 import time
-
-
+import sys
 
 ####  Python ITK/VTK MODULES
+import itk
 import cv2
 import vtk
 from vtk.util import numpy_support
@@ -33,6 +32,8 @@ from vtk.util import numpy_support
 ####  MY MODULES
 import ReadWriteImageModule as rw
 import RigidMotionModule as rm
+
+sys.path.append('../wrapped_modules/')
 from SiddonGpuPy import pySiddonGpu     # Python wrapped C library for GPU accelerated DRR generation
 
 
