@@ -44,9 +44,9 @@ Procedure:
 # Test the package
 
 In order to run 2D/3D registration between STL model and an X-ray image:
-run "python Register_femoral_implant.py"
+run "python Register_femoral_implant.py ..\\input_data\\HOPE_Test"
 
 In order to run 2D/3D registration between CT scan and an X-ray image:
-run "python Register_CT_pelvis.py"
+run "python Register_CT_pelvis.py ..\\input_data\\HipPhantom"
 
-![](images/Intro_registration.png)
+![](demo_images/Intro_registration.png)
