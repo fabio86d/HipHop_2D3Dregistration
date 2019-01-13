@@ -13,9 +13,11 @@ The modules for the projector, the metrics and the optimizer are implemented in 
 
 The CUDA accelerated library for DRR generation from CT/MRI scan is provided already wrapped in Python as "SiddonGpuPy.pyd" file. The original C/C++ codes
 and the method for wrapping the library in Python using Cython are available in another repository. 
+
+![](demo_images/Intro_registration.png)
  
 # Installation
-Use the code is with an Anaconda environment equipped with python-3.X, Python itk, Python vtk, Python openCV and Cython.
+Use the code is with an Anaconda environment equipped with python-3.X, Python itk, Python vtk, Python openCV and Cython. Parallelization was achieved with CUDA API on Microsoft Visual Studio Community 2015 in a Windows 10 Enterprise environment and a graphic card NVIDIA Quadro M5000 with 8 GB memory.
 
 Procedure:
 
@@ -48,5 +50,3 @@ run "python Register_femoral_implant.py ..\\input_data\\HOPE_Test"
 
 In order to run 2D/3D registration between CT scan and an X-ray image:
 run "python Register_CT_pelvis.py ..\\input_data\\HipPhantom"
-
-![](demo_images/Intro_registration.png)
